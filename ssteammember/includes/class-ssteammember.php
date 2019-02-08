@@ -23,6 +23,7 @@ if ( ! class_exists( 'SSTeamMember' ) ) {
 			$this->register_metabox();
 			$this->register_shortcode();
 			$this->load_front_end_assets();
+			$this->load_admin_assets();
 			$this->load_helper();
 			$this->load_template();
 		}
@@ -37,14 +38,19 @@ if ( ! class_exists( 'SSTeamMember' ) ) {
 
 		function register_metabox() {
 			require plugin_dir_path( __FILE__ ) . 'class-ssteammember-metabox.php';
-			$ssTeamMemberMetaBox = new SSTeamMemberMetaBox( $this->pluginName );
-			$ssTeamMemberMetaBox->assign_metabox();
+			new SSTeamMemberMetaBox( $this->pluginName );
+		}
+
+		function load_admin_assets() {
+			add_action( 'admin_enqueue_scripts', array( $this, 'admin_assets' ) );
 		}
 
 		function load_front_end_assets() {
-			wp_enqueue_script( $this->pluginName . ".js", plugin_dir_url( __DIR__ ) . 'assets/js/ssteammember.js', array( 'jquery' ), $this->pluginVersion, true );
-			wp_enqueue_style( $this->pluginName . ".css", plugin_dir_url( __DIR__ ) . 'assets/css/ssteammember.css', array(), $this->pluginVersion );
-			wp_enqueue_style( 'dashicons' );
+			if ( ! is_admin() ) {
+				wp_enqueue_script( $this->pluginName . ".js", plugin_dir_url( __DIR__ ) . 'assets/js/ssteammember.js', array( 'jquery' ), $this->pluginVersion, true );
+				wp_enqueue_style( $this->pluginName . ".css", plugin_dir_url( __DIR__ ) . 'assets/css/ssteammember.css', array(), $this->pluginVersion );
+				wp_enqueue_style( 'dashicons' );
+			}
 		}
 
 		function register_shortcode() {
@@ -101,6 +107,12 @@ if ( ! class_exists( 'SSTeamMember' ) ) {
 				'menu_icon'           => 'dashicons-groups'
 			);
 			register_post_type( 'team-member', $args_teamMember );
+		}
+
+		function admin_assets() {
+			wp_enqueue_media();
+			wp_enqueue_script( $this->pluginName . "_admin.js", plugin_dir_url( __DIR__ ) . 'assets/admin/js/ssteammember.js', array( 'jquery' ), $this->pluginVersion, true );
+			wp_enqueue_style( $this->pluginName . "_admin.css", plugin_dir_url( __DIR__ ) . 'assets/admin/css/ssteammember.css', array(), $this->pluginVersion );
 		}
 	}
 }

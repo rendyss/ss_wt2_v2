@@ -105,16 +105,16 @@ if ( ! class_exists( 'SSTeamMemberMetabox' ) ) {
 				$post_id = $parent_id;
 			}
 			$ssfields = [
-				$this->pluginName . "_position",
-				$this->pluginName . "_email",
-				$this->pluginName . "_website",
-				$this->pluginName . "_image_id",
+				"_position",
+				"_email",
+				"_website",
+				"_image_id",
 			];
 			foreach ( $ssfields as $field ) {
 				if ( array_key_exists( $field, $_POST ) ) {
-					update_post_meta( $post_id, $field, sanitize_text_field( $_POST[ $field ] ) );
+					update_post_meta( $post_id, $this->pluginName . $field, sanitize_text_field( $_POST[ $field ] ) );
 				} else {
-					delete_post_meta( $post_id, $field );
+					delete_post_meta( $post_id, $this->pluginName .$field );
 				}
 			}
 		}

@@ -1,11 +1,11 @@
-# ss_wt2
+# ss_wt2 v2
 
-Super simple WordPressi to display team member using shortcode
+Super simple WordPress to display team member using shortcode
 
 ## Display multiple team members
 `[ss_teammember]`
 
-## Dispplay single team member by its ID
+## Display single team member by its ID
 `[ss_teammember id=1]`
 Change the number with a specified team member id
 

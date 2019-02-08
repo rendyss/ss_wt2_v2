@@ -41,45 +41,13 @@ if ( ! class_exists( 'SSTeamMemberMetabox' ) ) {
 
 		function render_metabox( $post ) {
 			wp_nonce_field( $this->pluginName . "_nonce", $this->pluginName . "_nonce_field" );
+			$ssTemplate = new SSTeamMemberTemplate( plugin_dir_path( dirname( __FILE__ ) ) . 'templates' );
+			//render the template
+			echo $ssTemplate->render( 'teammember-admin-form', array(
+				'pluginName' => $this->pluginName,
+				'post_id'    => $post->ID
+			) );
 			?>
-            <div class="sscbox" id="frmAddMateri">
-                <p class="ss-field">
-                    <label for="<?php echo $this->pluginName . "_position"; ?>"><?php echo __( 'Position' ); ?></label>
-                    <input type="text" class="soal regular-text" name="<?php echo $this->pluginName . "_position"; ?>"
-                           id="<?php echo $this->pluginName . "_position"; ?>"
-                           value="<?php echo get_post_meta( $post->ID, $this->pluginName . "_position", true ); ?>"
-                           required>
-                </p>
-                <p class="ss-field">
-                    <label for="<?php echo $this->pluginName . "_email"; ?>"><?php echo __( 'Email' ); ?></label>
-                    <input type="email" class="<?php echo $this->pluginName . "_email"; ?> regular-text"
-                           name="<?php echo $this->pluginName . "_email"; ?>"
-                           id="<?php echo $this->pluginName . "_email"; ?>"
-                           value="<?php echo get_post_meta( $post->ID, $this->pluginName . "_email", true ); ?>"
-                           required/>
-                </p>
-                <p class="ss-field">
-                    <label for="<?php echo $this->pluginName . "_website"; ?>"><?php echo __( 'Website' ); ?></label>
-                    <input type="url" class="<?php echo $this->pluginName . "_website"; ?> regular-text"
-                           name="<?php echo $this->pluginName . "_website"; ?>"
-                           id="<?php echo $this->pluginName . "_website"; ?>"
-                           value="<?php echo get_post_meta( $post->ID, $this->pluginName . "_website", true ); ?>"
-                           required/>
-                </p>
-                <p class="ss-field">
-                    <label for="<?php echo $this->pluginName . "_image"; ?>"><?php echo __( 'Image' ); ?></label>
-                <div class="pimg">
-					<?php $ssimageid = get_post_meta( $post->ID, $this->pluginName . "_image_id", true ); ?>
-                    <div class="imgprev <?php echo ! $ssimageid ? "hidden" : ""; ?>">
-                        <img src="<?php echo $ssimageid ? wp_get_attachment_image_url( $ssimageid ) : ""; ?>"/>
-                        <input type="hidden" name="<?php echo $this->pluginName . "_image_id"; ?>"
-                               value="<?php echo $ssimageid; ?>"/>
-                        <a href="#" class="rimage">X</a>
-                    </div>
-                    <button type="button" class="imgselect button"><?php echo __( 'Select Image' ); ?></button>
-                </div>
-                </p>
-            </div>
 			<?php
 		}
 

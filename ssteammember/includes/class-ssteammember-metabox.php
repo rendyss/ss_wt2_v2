@@ -81,8 +81,6 @@ if ( ! class_exists( 'SSTeamMemberMetabox' ) ) {
 			foreach ( $ssfields as $field ) {
 				if ( array_key_exists( $this->pluginName . $field, $_POST ) ) {
 					update_post_meta( $post_id, $this->pluginName . $field, sanitize_text_field( $_POST[ $this->pluginName . $field ] ) );
-				} else {
-					delete_post_meta( $post_id, $this->pluginName . $field );
 				}
 			}
 		}

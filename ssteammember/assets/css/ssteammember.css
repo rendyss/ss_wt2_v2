@@ -1,0 +1,62 @@
+.team {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    /*padding: 20px;*/
+    background: #fff;
+}
+
+.ss_row .column {
+    float: left;
+    width: 33.3%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+}
+
+@media screen and (max-width: 650px) {
+    .ss_row .column {
+        width: 100%;
+        display: block;
+    }
+}
+
+.team.single {
+    max-width: 450px;
+}
+
+.team .cover {
+    height: 300px;
+}
+
+.ss_row .column .team .cover {
+    height: 200px;
+}
+
+.team .position {
+    color: grey;
+    font-size: 16px;
+}
+
+.team .footer {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    background-color: #333;
+    cursor: pointer;
+    width: 100%;
+    font-size: 12px;
+    text-decoration: none;
+    text-align: left;
+}
+
+.team .footer a {
+    color: #fff;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.team .footer a:hover {
+    text-decoration: none;
+}

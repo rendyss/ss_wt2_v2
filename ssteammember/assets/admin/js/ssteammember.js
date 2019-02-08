@@ -6,7 +6,7 @@ jQuery(function () {
             originparent = origin.closest('.pimg'),
             divprev = originparent.find('.imgprev'),
             imgprev = divprev.find('img'),
-            imgid = originparent.find("input[name=ssimage]");
+            imgid = originparent.find("input[name=ssteammember_image_id]");
 
         if (file_frame) file_frame.close();
 
@@ -41,7 +41,7 @@ jQuery(function () {
             superparet = prevparent.parents(".pimg"),
             btnadd = superparet.find(".imgselect"),
             imgp = prevparent.find("img"),
-            imgid = prevparent.find("input[name=ssimage]");
+            imgid = prevparent.find("input[name=ssteammember_image_id]");
 
         imgp.attr("src", "");
         imgid.val("");

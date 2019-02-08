@@ -44,27 +44,36 @@ if ( ! class_exists( 'SSTeamMemberMetabox' ) ) {
 			?>
             <div class="sscbox" id="frmAddMateri">
                 <p class="ss-field">
-                    <label for="ssposition"><?php echo __( 'Position' ); ?></label>
-                    <input type="text" class="soal regular-text" name="ssposition" id="ssposition"
-                           value="<?php echo get_post_meta( $post->ID, 'ssposition', true ); ?>" required>
+                    <label for="<?php echo $this->pluginName . "_position"; ?>"><?php echo __( 'Position' ); ?></label>
+                    <input type="text" class="soal regular-text" name="<?php echo $this->pluginName . "_position"; ?>"
+                           id="<?php echo $this->pluginName . "_position"; ?>"
+                           value="<?php echo get_post_meta( $post->ID, $this->pluginName . "_position", true ); ?>"
+                           required>
                 </p>
                 <p class="ss-field">
-                    <label for="ssemail"><?php echo __( 'Email' ); ?></label>
-                    <input type="email" class="ssemail regular-text" name="ssemail" id="ssemail"
-                           value="<?php echo get_post_meta( $post->ID, 'ssemail', true ); ?>" required/>
+                    <label for="<?php echo $this->pluginName . "_email"; ?>"><?php echo __( 'Email' ); ?></label>
+                    <input type="email" class="<?php echo $this->pluginName . "_email"; ?> regular-text"
+                           name="<?php echo $this->pluginName . "_email"; ?>"
+                           id="<?php echo $this->pluginName . "_email"; ?>"
+                           value="<?php echo get_post_meta( $post->ID, $this->pluginName . "_email", true ); ?>"
+                           required/>
                 </p>
                 <p class="ss-field">
-                    <label for="sswebsite"><?php echo __( 'Website' ); ?></label>
-                    <input type="url" class="sswebsite regular-text" name="sswebsite" id="sswebsite"
-                           value="<?php echo get_post_meta( $post->ID, 'sswebsite', true ); ?>" required/>
+                    <label for="<?php echo $this->pluginName . "_website"; ?>"><?php echo __( 'Website' ); ?></label>
+                    <input type="url" class="<?php echo $this->pluginName . "_website"; ?> regular-text"
+                           name="<?php echo $this->pluginName . "_website"; ?>"
+                           id="<?php echo $this->pluginName . "_website"; ?>"
+                           value="<?php echo get_post_meta( $post->ID, $this->pluginName . "_website", true ); ?>"
+                           required/>
                 </p>
                 <p class="ss-field">
-                    <label for="ssimage"><?php echo __( 'Image' ); ?></label>
+                    <label for="<?php echo $this->pluginName . "_image"; ?>"><?php echo __( 'Image' ); ?></label>
                 <div class="pimg">
-					<?php $ssimageid = get_post_meta( $post->ID, 'ssimage', true ); ?>
+					<?php $ssimageid = get_post_meta( $post->ID, $this->pluginName . "_image_id", true ); ?>
                     <div class="imgprev <?php echo ! $ssimageid ? "hidden" : ""; ?>">
                         <img src="<?php echo $ssimageid ? wp_get_attachment_image_url( $ssimageid ) : ""; ?>"/>
-                        <input type="hidden" name="ssimage" value="<?php echo $ssimageid; ?>"/>
+                        <input type="hidden" name="<?php echo $this->pluginName . "_image_id"; ?>"
+                               value="<?php echo $ssimageid; ?>"/>
                         <a href="#" class="rimage">X</a>
                     </div>
                     <button type="button" class="imgselect button"><?php echo __( 'Select Image' ); ?></button>
@@ -96,11 +105,10 @@ if ( ! class_exists( 'SSTeamMemberMetabox' ) ) {
 				$post_id = $parent_id;
 			}
 			$ssfields = [
-				'ssposition',
-				'ssemail',
-				'sswebsite',
-				'ssimage',
-				'ssimage'
+				$this->pluginName . "_position",
+				$this->pluginName . "_email",
+				$this->pluginName . "_website",
+				$this->pluginName . "_image_id",
 			];
 			foreach ( $ssfields as $field ) {
 				if ( array_key_exists( $field, $_POST ) ) {

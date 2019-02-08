@@ -111,10 +111,10 @@ if ( ! class_exists( 'SSTeamMemberMetabox' ) ) {
 				"_image_id",
 			];
 			foreach ( $ssfields as $field ) {
-				if ( array_key_exists( $field, $_POST ) ) {
-					update_post_meta( $post_id, $this->pluginName . $field, sanitize_text_field( $_POST[ $field ] ) );
+				if ( array_key_exists( $this->pluginName . $field, $_POST ) ) {
+					update_post_meta( $post_id, $this->pluginName . $field, sanitize_text_field( $_POST[ $this->pluginName . $field ] ) );
 				} else {
-					delete_post_meta( $post_id, $this->pluginName .$field );
+					delete_post_meta( $post_id, $this->pluginName . $field );
 				}
 			}
 		}

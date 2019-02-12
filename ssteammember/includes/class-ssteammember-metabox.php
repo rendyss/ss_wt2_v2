@@ -53,7 +53,13 @@ if ( ! class_exists( 'SSTeamMemberMetabox' ) ) {
 
 		function save_metabox_callback( $post_id ) {
 
-			if ( ! wp_verify_nonce( $_POST[ $this->pluginName . "_nonce_field" ], $this->pluginName . "_nonce" ) ) {
+			if ( ! isset( $_POST[ $this->pluginName . "_nonce_field" ] ) ) {
+				return;
+			}
+
+			$nonce_val = $_POST[ $this->pluginName . "_nonce_field" ];
+
+			if ( ! wp_verify_nonce( $nonce_val, $this->pluginName . "_nonce" ) ) {
 				return;
 			}
 

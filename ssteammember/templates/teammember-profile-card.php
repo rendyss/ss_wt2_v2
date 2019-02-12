@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }; ?>
 <div class="team <?php echo $is_single ? "single" : ""; ?>">
 	<?php echo $is_img ? "<div class=\"cover\" style=\"background: url(" . $img_url . ") center no-repeat; background-size: cover\"></div>" : "";
-	echo $is_name ? "<h3>" . $name . "</h3>" : "";
+	echo $is_name ? "<a href=\"" . $permalink . "\"><h3>" . $name . "</h3></a>" : "";
 	echo $is_position ? "<p class=\"position\">" . $position . "</p>" : "";
 
 	if ( $is_email or $is_website ) { ?>

@@ -46,6 +46,10 @@ if ( ! class_exists( 'SSTeamMember' ) ) {
 		}
 
 		function load_front_end_assets() {
+			add_action( 'wp_enqueue_scripts', array( $this, 'front_end_assets_callback' ) );
+		}
+
+		function front_end_assets_callback() {
 			if ( ! is_admin() ) {
 				wp_enqueue_script( $this->pluginName . ".js", plugin_dir_url( __DIR__ ) . 'assets/js/ssteammember.js', array( 'jquery' ), $this->pluginVersion, true );
 				wp_enqueue_style( $this->pluginName . ".css", plugin_dir_url( __DIR__ ) . 'assets/css/ssteammember.css', array(), $this->pluginVersion );
@@ -102,7 +106,7 @@ if ( ! class_exists( 'SSTeamMember' ) ) {
 				'can_export'          => true,
 				'has_archive'         => true,
 				'exclude_from_search' => false,
-				'publicly_queryable'  => false,
+//				'publicly_queryable'  => false,
 				'capability_type'     => 'page',
 				'menu_icon'           => 'dashicons-groups'
 			);
